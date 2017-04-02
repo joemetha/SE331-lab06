@@ -15,20 +15,8 @@ import java.util.List;
 @Profile("firstDataSource")
 @ConfigurationProperties(prefix = "server")
 @Repository
-public class StudentDaoImpl implements StudentDao{
-    List<Student> students;
-    String baseUrl;
-    String imageUrl;
+public class StudentDaoImpl extends AbstractStudentDao{
 
-    public void setBaseUrl(String baseUrl)
-    {
-        this.baseUrl=baseUrl;
-    }
-    public void setImageUrl(String imageUrl)
-    {
-        this.imageUrl=imageUrl;
-    }
-    String imageBaseUrl;
     @PostConstruct
 
     private void init(){
@@ -48,13 +36,5 @@ public class StudentDaoImpl implements StudentDao{
                 "The man for the Kop");
         students.add(student);
     }
-    @Override
-    public List<Student> getStudents(){
-        return students;
-    }
 
-    @Override
-    public Student findById(long id){
-        return students.stream().filter(s -> s.getId() ==id).findFirst().get();
-    }
 }

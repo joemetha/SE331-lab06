@@ -14,7 +14,8 @@ export class StudentsDataServerService {
   }
 
   getStudent(id:number){
-    return null;
+    let student: Student;
+    return this.http.get('http://localhost:8080/'+id).map(res => res.json())
   }
 
   addStudent(student:Student){
